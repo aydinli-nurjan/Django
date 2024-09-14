@@ -1,15 +1,27 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
+from .models import *
 
 # Create your views here.
-def index(request):
-    return HttpResponse('<h1>News - Home</h1>')
+# def html(request):
+#     posts = News.objects.all()
+#     return render(request, 'news/index.html', {'posts': posts, 'title': 'Main page'})
 
-def about(request):
-    return HttpResponse('<h1>News - About</h1>')
+# def index(request, catid):
+#     return HttpResponse(f'<h1>News - Home</h1><p>{catid}</p>')
+
+# def about(request, cat):
+#     return HttpResponse(f'<h1>News - About</h1><p>{cat}</p>')
+
+def home(request):
+    return render(request, 'news/index.html')
 
 def contact(request):
-    return HttpResponse('<h1>News - Contact</h1>')
+    return render(request, 'news/contact.html')
 
-def team(request):
-    return HttpResponse('<h1>News - Team</h1>')
+
+def single_page(request):
+    return render(request, 'news/single-page.html')
+
+def pageNotFound(request, exception):
+    return HttpResponseNotFound('<h1>News - pageNotFound</h1>')

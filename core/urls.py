@@ -19,7 +19,8 @@ from django.urls import path, include
 from news.views import *
 from events.views import *
 from category.views import *
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,3 +29,8 @@ urlpatterns = [
     path("events/", include('events.urls')),
     path("category/", include('category.urls'))
 ]
+
+handrel404 = pageNotFound
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
