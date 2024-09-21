@@ -1,5 +1,5 @@
 from django.urls import path
-
+from news.models import News
 from .views import *
 
 urlpatterns = [

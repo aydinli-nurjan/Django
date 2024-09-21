@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from news.models import News
 from .models import *
 
 # Create your views here.
@@ -14,7 +15,14 @@ from .models import *
 #     return HttpResponse(f'<h1>News - About</h1><p>{cat}</p>')
 
 def home(request):
-    return render(request, 'news/index.html')
+
+    context = {
+        "title": 'Home',
+        "posts": News.objects.all()
+    }
+
+
+    return render(request, 'news/index.html',context)
 
 def contact(request):
     return render(request, 'news/contact.html')
